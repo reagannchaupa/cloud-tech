@@ -28,6 +28,9 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
     /* Transparent glass effect */
     z-index: 10;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
 }
 
 .logo {
@@ -37,6 +40,13 @@ body {
     text-shadow: 0 0 4px #001f3f;
 }
 
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; 
+}
+
 .nav-links a {
     margin-left: 2rem;
     color: white;
@@ -44,6 +54,7 @@ body {
     font-weight: 500;
     transition: color 0.3s ease;
     text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
+    font-size: 0.95rem;
 }
 
 .nav-links a:hover {
@@ -52,8 +63,9 @@ body {
 
 .hero {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -62,10 +74,12 @@ body {
 
 
 .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
     z-index: 2;
     position: relative;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    line-height: 1.2;
 }
 
 .hero-content p {
@@ -73,6 +87,7 @@ body {
     margin-bottom: 2rem;
     z-index: 2;
     position: relative;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
 }
 
 .cta-button {
@@ -84,7 +99,7 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
     z-index: 2;
-     position: relative;
+    position: relative;
 }
 
 .cta-button:hover {
@@ -138,7 +153,5 @@ body {
     z-index: -1;
     background: linear-gradient(to bottom right, #00d9ff, #001f3f);
     color: white;
-    padding: 2rem;
-    
   }
   
