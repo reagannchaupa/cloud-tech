@@ -15,13 +15,26 @@ let dots = [];
 let childDots = [];
 let sparks = [];
 
+function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
+    ctx.scale(dpr, dpr); // scale to device resolution
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
 
 for (let i = 0; i < 100; i++) {
     dots.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
+        vx: (Math.random() - 0.5) * 0.8, // Random velocity
+        vy: (Math.random() - 0.5) * 0.8, 
         radius: Math.random() * 2 + 1,
     });
 }
@@ -29,8 +42,8 @@ for (let i = 0; i < 100; i++) {
 function drawDots() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#ffffff"; // cyan/light blue
-
-    for (let i = 0; i < dots.length; i++) {
+    
+    for (let i = 0; i < dots.length; i++) { 
         let d = dots[i];
         d.x += d.vx;
         d.y += d.vy;
@@ -48,10 +61,10 @@ function drawDots() {
         for (let j = i + 1; j < dots.length; j++) {
             let dx = dots[i].x - dots[j].x;
             let dy = dots[i].y - dots[j].y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
+            let dist = Math.sqrt(dx/2 * dx + dy/2 * dy);
 
-            if (dist < 100) {
-                ctx.strokeStyle = "rgba(0,255,255,0.1)";
+            if (dist < 110) {
+                ctx.strokeStyle = "rgba(0,255,255,0.2)";
                 ctx.lineWidth = 0.5;
                 ctx.beginPath();
                 ctx.moveTo(dots[i].x, dots[i].y);
@@ -157,8 +170,6 @@ function draw() {
   
 
     requestAnimationFrame(draw);
-
-    
 
 }
   
